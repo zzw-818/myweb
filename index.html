@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>墨韵小筑 | 我的中式园林</title>
+    
+    <!-- 引入 Swiper 的 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
     <style>
         /* 基础设置：宣纸底色与中文字体 */
         :root {
-            --bg-color: #f4f1ea; /* 宣纸黄 */
-            --ink-color: #333333; /* 墨黑 */
-            --accent-green: #4a5d4e; /* 黛绿 */
-            --accent-red: #9e3d3d; /* 朱砂红 */
+            --bg-color: #f4f1ea;
+            --ink-color: #333333;
+            --accent-green: #4a5d4e;
+            --accent-red: #9e3d3d;
         }
 
         * {
@@ -21,7 +25,6 @@
 
         body {
             background-color: var(--bg-color);
-            /* 添加一点纸张纹理感 */
             background-image: 
                 radial-gradient(#e5e0d5 1px, transparent 1px),
                 radial-gradient(#e5e0d5 1px, transparent 1px);
@@ -33,10 +36,9 @@
             overflow-x: hidden;
         }
 
-        /* 顶部标题区 */
         header {
             text-align: center;
-            padding: 60px 20px 40px;
+            padding: 60px 20px 20px;
             position: relative;
         }
 
@@ -48,7 +50,6 @@
             display: inline-block;
         }
 
-        /* 朱砂印章效果 */
         h1::after {
             content: "私印";
             position: absolute;
@@ -74,18 +75,16 @@
             opacity: 0.7;
         }
 
-        /* 主容器 */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        /* 模块标题 */
         .section-title {
             font-size: 1.8rem;
             color: var(--accent-green);
-            margin: 60px 0 30px;
+            margin: 40px 0 20px;
             padding-left: 20px;
             border-left: 4px solid var(--accent-green);
             display: flex;
@@ -101,52 +100,60 @@
             opacity: 0.3;
         }
 
-        /* 照片墙：错落布局 */
-        .photo-wall {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            padding: 20px;
-        }
-
-        .photo-frame {
-            background: #fff;
-            padding: 12px 12px 40px 12px; /* 底部留白类似画轴 */
-            box-shadow: 2px 4px 15px rgba(0,0,0,0.08);
-            border: 1px solid #e0dcd3;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            position: relative;
-        }
-
-        /* 模拟画框内的内衬 */
-        .photo-frame::before {
-            content: '';
-            position: absolute;
-            top: 8px; left: 8px; right: 8px; bottom: 8px;
-            border: 1px solid rgba(0,0,0,0.05);
-            pointer-events: none;
-        }
-
-        .photo-frame img {
+        /* ================= 照片墙 3D 环绕区域 ================= */
+        .swiper-container-wrapper {
             width: 100%;
-            height: 300px;
+            padding: 40px 0;
+            /* 给 3D 效果留出空间，防止溢出 */
+            overflow: hidden; 
+        }
+
+        .swiper {
+            width: 100%;
+            padding-top: 20px;
+            padding-bottom: 50px;
+        }
+
+        .swiper-slide {
+            background-position: center;
+            background-size: cover;
+            width: 320px; /* 控制单张照片的宽度 */
+            height: 400px; /* 控制单张照片的高度 */
+            border-radius: 4px;
+            /* 照片框的装裱感 */
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border: 1px solid #e0dcd3;
+            cursor: pointer;
+            transition: box-shadow 0.3s;
+        }
+
+        .swiper-slide:hover {
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        }
+
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            filter: sepia(0.2) contrast(0.9); /* 给照片加一点古风滤镜 */
+            filter: sepia(0.2) contrast(0.9);
             transition: filter 0.4s;
-            border: 1px solid #ddd;
+            pointer-events: none; /* 防止图片自带拖拽干扰 */
         }
 
-        .photo-frame:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 5px 15px 25px rgba(0,0,0,0.15);
-            z-index: 10;
+        .swiper-slide:hover img {
+            filter: sepia(0) contrast(1);
         }
 
-        .photo-frame:hover img {
-            filter: sepia(0) contrast(1); /* 悬停时恢复色彩 */
+        /* 自定义分页器颜色（水墨绿） */
+        .swiper-pagination-bullet-active {
+            background-color: var(--accent-green) !important;
         }
 
-        /* 便利贴墙 */
+
+        /* ================= 便利贴墙 ================= */
         .note-wall {
             display: flex;
             flex-wrap: wrap;
@@ -155,7 +162,6 @@
             padding: 40px 20px;
         }
 
-        /* 宣纸便签样式 */
         .sticky-note {
             width: 220px;
             min-height: 220px;
@@ -164,7 +170,6 @@
             box-shadow: 3px 5px 15px rgba(0,0,0,0.1);
             position: relative;
             transition: all 0.3s ease;
-            /* 模拟宣纸边缘微卷 */
             border-radius: 2px 2px 10px 2px;
             border: 1px solid #efe6d5;
             font-size: 1.1rem;
@@ -175,12 +180,10 @@
             text-align: center;
         }
 
-        /* 随机倾斜角度，使用 nth-child */
         .sticky-note:nth-child(1) { transform: rotate(-3deg); }
         .sticky-note:nth-child(2) { transform: rotate(2deg); }
         .sticky-note:nth-child(3) { transform: rotate(-1.5deg); }
         .sticky-note:nth-child(4) { transform: rotate(3deg); }
-        .sticky-note:nth-child(5) { transform: rotate(-2deg); }
 
         .sticky-note:hover {
             transform: rotate(0deg) scale(1.05);
@@ -188,7 +191,6 @@
             z-index: 10;
         }
 
-        /* 图钉效果（红色朱砂点） */
         .sticky-note::before {
             content: "";
             position: absolute;
@@ -202,11 +204,63 @@
             box-shadow: inset -2px -2px 4px rgba(0,0,0,0.3), 2px 2px 5px rgba(0,0,0,0.2);
         }
 
-        /* 页脚 */
+        /* ================= 图片放大预览 (Lightbox) ================= */
+        #image-modal {
+            display: none; /* 默认隐藏 */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(244, 241, 234, 0.95); /* 宣纸色半透明遮罩 */
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        #image-modal.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        #image-modal img {
+            max-width: 90%;
+            max-height: 85vh;
+            object-fit: contain;
+            border: 12px solid #fff;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            /* 放大时的初始状态 */
+            transform: scale(0.8);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        #image-modal.show img {
+            transform: scale(1); /* 放大到正常尺寸 */
+        }
+
+        /* 关闭按钮 */
+        .close-btn {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 3rem;
+            color: var(--ink-color);
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.3s;
+        }
+
+        .close-btn:hover {
+            color: var(--accent-red);
+        }
+
         footer {
             text-align: center;
             padding: 40px;
-            margin-top: 60px;
+            margin-top: 20px;
             color: var(--accent-green);
             font-size: 0.9rem;
             opacity: 0.7;
@@ -222,25 +276,34 @@
     </header>
 
     <div class="container">
-        <!-- 照片墙区域 -->
         <h2 class="section-title">「 浮光掠影 · 照片墙 」</h2>
-        <div class="photo-wall">
-            <!-- 照片 1 -->
-            <div class="photo-frame">
-                <!-- 替换为你自己的图片链接或本地路径，例如 images/photo1.jpg -->
-                <img src="https://images.unsplash.com/photo-1545048702-79362596cdc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="园林一角">
-            </div>
-            <!-- 照片 2 -->
-            <div class="photo-frame">
-                <img src="https://images.unsplash.com/photo-1522383225653-ed111181a951?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="竹影">
-            </div>
-            <!-- 照片 3 -->
-            <div class="photo-frame">
-                <img src="https://images.unsplash.com/photo-1505130771639-8613e2058c2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="远山">
+        
+        <!-- 照片墙 3D 环绕区域 -->
+        <div class="swiper-container-wrapper">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <!-- 每一张照片是一个 swiper-slide -->
+                    <div class="swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1545048702-79362596cdc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="园林一角" onclick="openModal(this.src)">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1522383225653-ed111181a951?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="竹影" onclick="openModal(this.src)">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1505130771639-8613e2058c2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="远山" onclick="openModal(this.src)">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="古建" onclick="openModal(this.src)">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1490682143684-14369e18dce8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="红叶" onclick="openModal(this.src)">
+                    </div>
+                </div>
+                <!-- 分页器 -->
+                <div class="swiper-pagination"></div>
             </div>
         </div>
 
-        <!-- 便利贴区域 -->
         <h2 class="section-title">「 随笔拾遗 · 便利贴墙 」</h2>
         <div class="note-wall">
             <div class="sticky-note">
@@ -262,5 +325,67 @@
         © 2026 我的个人网站 · 基于 Cloudflare 构建
     </footer>
 
+    <!-- 全屏大图预览 Modal -->
+    <div id="image-modal" onclick="closeModal(event)">
+        <!-- 点击背景也能关闭 -->
+        <span class="close-btn" onclick="closeModal(event)">&times;</span>
+        <img id="modal-img" src="" alt="大图预览">
+    </div>
+
+    <!-- 引入 Swiper 的 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        // 初始化 Swiper 3D 环绕效果
+        var swiper = new Swiper(".mySwiper", {
+            effect: "coverflow", // 开启 3D 封面流效果
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: "auto",
+            loop: true, // 允许无限循环滑动
+            coverflowEffect: {
+                rotate: 30,    // 侧边照片的旋转角度
+                stretch: 0,    // 照片之间的拉伸距离
+                depth: 200,    // 照片的深度（3D 纵深感）
+                modifier: 1,   // 效果乘数
+                slideShadows: true, // 开启侧边阴影，更有立体感
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            // 让鼠标滚轮也能控制滑动（可选，体验更好）
+            mousewheel: {
+                forceToAxis: true,
+            },
+            keyboard: {
+                enabled: true,
+            },
+        });
+
+        // 放大预览功能
+        const modal = document.getElementById('image-modal');
+        const modalImg = document.getElementById('modal-img');
+
+        function openModal(src) {
+            modalImg.src = src;
+            modal.classList.add('show');
+            // 阻止背景滚动
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(event) {
+            // 如果点击的是背景或者关闭按钮，才关闭
+            if (event.target === modal || event.target.classList.contains('close-btn')) {
+                modal.classList.remove('show');
+                // 延迟清空 src，防止关闭动画期间闪烁
+                setTimeout(() => {
+                    modalImg.src = '';
+                }, 300);
+                // 恢复背景滚动
+                document.body.style.overflow = '';
+            }
+        }
+    </script>
 </body>
 </html>
