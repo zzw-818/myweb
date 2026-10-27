@@ -35,6 +35,10 @@ body{background:radial-gradient(ellipse at 80% 8%,#34464e70,transparent 43%),lin
 @media(max-width:700px){.brand-flower{width:30px;height:30px}.brand-en{font-size:6px;letter-spacing:1px}.weather-note{font-size:8px;margin-top:15px;letter-spacing:.4px}.hero h1{font-size:41px;letter-spacing:3px}.hero-copy>p{font-size:10px;letter-spacing:.4px}.hero-art{margin-top:4px;margin-bottom:0}.hero-star{font-size:52px}.river-group{gap:24px;padding-right:24px}.river{padding-block:19px;perspective:850px}.photo-rivers{min-height:0;padding-block:12px}.photo-rivers:before,.photo-rivers:after{width:23px}.photo-card:hover,.photo-card:focus-visible{--lift:25px;transform:translateZ(calc(var(--depth,0px) + 25px)) rotateY(0deg) rotateZ(0deg)}.closing p{font-size:16px}.closing-en{font-size:6px}.rain-atmosphere{opacity:.16}}
 @media(prefers-reduced-motion:reduce){.rain-atmosphere{display:none}.photo-card,.photo-card:hover,.photo-card:focus-visible{transform:rotate(var(--tilt));will-change:auto}.river-track{will-change:auto}}
 /* Keep the composition contained even in a narrow browser side panel. */
+.header-actions{margin-left:auto;display:flex;align-items:center;gap:9px}.header-actions .header-add{margin-left:0}.account-button{min-height:39px;font-size:11px;padding:9px 13px}.account-button svg{width:16px;height:16px}.cloud-strip{display:flex;align-items:center;justify-content:space-between;gap:15px;min-height:44px;border-bottom:1px solid #ffffff08;color:#829da9;font-size:10px;position:relative;z-index:1}.cloud-strip>span{display:flex;align-items:center;gap:8px}.cloud-strip .text-button{font-size:10px}.cloud-strip[data-state="error"] .save-dot{background:#d4a9a1}.cloud-strip[data-state="busy"] .save-dot{animation:cloud-pulse 1.3s infinite alternate}.cloud-strip[data-state="ready"] .save-dot{background:#b4cfae}.account-intro{color:#a9bec7;font-size:12px;line-height:1.9;margin-bottom:21px}.account-dialog #login-submit{margin-top:19px}.account-identity{border:1px solid #ffffff14;border-radius:7px;padding:16px;display:flex;flex-direction:column;gap:10px;margin-block:17px}.account-identity strong{font-size:14px;font-weight:500;overflow-wrap:anywhere}.account-identity>span:last-child{font-size:10px;color:#8eabb7}.account-controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center}.account-controls>.text-button{margin-left:auto}#cloud-config-details{border-top:1px solid #ffffff14;margin-top:24px;padding-top:17px}#cloud-config-details summary{cursor:pointer;color:#95b0be;font-size:11px}#cloud-config-details summary:hover{color:#d5e5eb}#config-form .full-width{margin-top:8px}.cloud-saving .note-grip{cursor:wait;pointer-events:none}.cloud-saving #account-button{opacity:.65;pointer-events:none}@keyframes cloud-pulse{to{opacity:.3}}
+@media(max-width:700px){.header-actions{gap:7px}.account-button{width:33px;height:33px;min-height:33px;padding:0}.account-button>span{display:none}.cloud-strip{font-size:9px;min-height:45px;gap:8px}.cloud-strip .text-button{font-size:9px}.cloud-strip>span{gap:5px}.cloud-strip #cloud-status{max-width:170px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.site-header nav{gap:13px}.account-intro{font-size:11px}}
+@media(max-width:420px){.site-header nav{display:none}.header-actions{margin-left:auto}.account-button>span{display:inline}.account-button{width:auto;padding-inline:10px;font-size:10px}.cloud-strip #cloud-status{max-width:150px}.cloud-strip .text-button{font-size:8px}}
+@media(prefers-reduced-motion:reduce){.cloud-strip[data-state="busy"] .save-dot{animation:none}}
 main{overflow-x:clip}
 @media(max-width:700px){.hero{grid-template-columns:minmax(0,1fr)}.nav-link{white-space:nowrap}.hero-art{max-width:100%;overflow:visible}}
 @media(max-width:380px){.site-header{gap:10px}.brand{gap:5px;font-size:19px}.brand-flower{width:27px;height:27px}.brand-en{font-size:5px;letter-spacing:.5px}.site-header nav{gap:12px}.nav-link{font-size:10px}.header-add{width:29px;height:29px;min-height:29px;margin-left:0}.hero h1{font-size:35px;letter-spacing:2px}.hero-copy .eyebrow{font-size:6px;letter-spacing:1px}.hero-art{transform:scale(.68);transform-origin:35% 40%;margin-top:-15px;margin-bottom:-20px}.hero-polaroid{left:-10px}.hero-paper{left:160px}.hero-star{right:-30px}.orbit-text{right:-35px}.notes-section .section-title{gap:5px}.notes-section .section-title h2{font-size:13px;letter-spacing:0}.notes-section .button{font-size:9px;padding-inline:6px}.filter{font-size:9px;padding:7px}.section-title h2{font-size:16px}.live-indicator{font-size:8px}.sticky-note{padding-inline:10px}.note-edit h3{font-size:13px}.note-edit p{font-size:10px}.closing p{font-size:14px;letter-spacing:.5px}.closing-en{letter-spacing:.6px}}
@@ -59,8 +63,9 @@ main{overflow-x:clip}
   <header class="site-header">
     <a class="brand" href="#" aria-label="听雨首页"><svg class="brand-flower"><use href="#i-rain"/></svg><span>听雨<span class="brand-en">RAINY MOMENTS</span></span></a>
     <nav aria-label="主导航"><a class="nav-link active" href="#photos">流动相册</a><a class="nav-link" href="#notes">心情便利贴</a></nav>
-    <button class="button button-dark header-add" data-action="upload"><svg><use href="#i-plus"/></svg><span>添加照片</span></button>
+    <div class="header-actions"><button class="button button-outline account-button" id="account-button"><svg><use href="#i-rain"/></svg><span id="account-label">登录同步</span></button><button class="button button-dark header-add" data-action="upload" aria-label="添加照片"><svg><use href="#i-plus"/></svg><span>添加照片</span></button></div>
   </header>
+  <div class="cloud-strip page-width"><span><i class="save-dot" id="cloud-dot"></i><span id="cloud-status" role="status">云端尚未连接</span></span><button class="text-button" id="cloud-refresh" hidden>同步云端 ↻</button><button class="text-button" id="cloud-connect">登录，让心情跟着你 ↗</button></div>
   <main>
     <section class="hero page-width">
       <div class="hero-copy"><div class="eyebrow"><span class="small-line"></span> A QUIET PLACE FOR A RAINY DAY</div><h1>听雨落下，<br>让<span class="accent-word">回忆<svg viewBox="0 0 200 15" aria-hidden="true"><path d="M3 10Q90-3 197 7M14 14Q105 3 183 11"/></svg></span>流动。</h1><p>窗外下着雨，思绪慢慢漂流。<br>用照片和小纸条，留住那些不必说出口的心情。</p><button class="button button-orange" data-action="new-note"><svg><use href="#i-note"/></svg>写下此刻的心情<svg class="end-arrow"><use href="#i-arrow"/></svg></button><span class="weather-note"><svg><use href="#i-rain"/></svg> 今日心情 · 适合发呆，适合想念</span></div>
@@ -72,15 +77,126 @@ main{overflow-x:clip}
       <div class="photo-rivers" id="photo-rivers"></div>
       <div class="river-bottom page-width"><span>回忆像雨，轻轻经过。</span><button class="text-button" data-action="upload">放进你的故事 <svg><use href="#i-plus"/></svg></button></div>
     </section>
-    <section class="notes-section page-width" id="notes" aria-labelledby="notes-title"><div class="section-top"><div class="section-title"><span class="section-index">02 /</span><h2 id="notes-title">写给生活的小纸条</h2></div><button class="button button-outline" data-action="new-note"><svg><use href="#i-plus"/></svg>新建便利贴</button></div><div class="notes-caption"><p>灵感、心事，或是今天的好心情。随手贴在这里。</p><span><svg><use href="#i-grip"/></svg> 拖动整理 · 点击编辑</span></div><div class="note-board" id="note-board" aria-label="可拖动的便利贴墙"></div><div class="board-footer"><span><i class="save-dot"></i><span id="save-status">内容仅保存在此浏览器</span></span><span id="note-count"></span></div></section>
+    <section class="notes-section page-width" id="notes" aria-labelledby="notes-title"><div class="section-top"><div class="section-title"><span class="section-index">02 /</span><h2 id="notes-title">写给生活的小纸条</h2></div><button class="button button-outline" data-action="new-note"><svg><use href="#i-plus"/></svg>新建便利贴</button></div><div class="notes-caption"><p>灵感、心事，或是今天的好心情。随手贴在这里。</p><span><svg><use href="#i-grip"/></svg> 拖动整理 · 点击编辑</span></div><div class="note-board" id="note-board" aria-label="可拖动的便利贴墙"></div><div class="board-footer"><span><i class="save-dot"></i><span id="save-status">登录后可保存到云端 · 当前为示例</span></span><span id="note-count"></span></div></section>
     <section class="closing page-width"><span>☂</span><p>雨声很轻，<em>心事可以慢慢说。</em></p><span class="closing-en">SOME FEELINGS SOUND BETTER IN THE RAIN.</span></section>
   </main>
   <footer class="site-footer page-width"><a class="footer-brand" href="#">听雨 <span>RAINY MOMENTS</span></a><span>给心情一点留白，给想念一个地方。</span><a href="#">回到顶部 ↑</a></footer>
   <dialog id="note-dialog" class="editor-dialog"><form id="note-form"><div class="dialog-heading"><div><span class="eyebrow">A NOTE TO LIFE</span><h2 id="note-dialog-title">写一张小纸条</h2></div><button type="button" class="icon-button" data-close aria-label="关闭"><svg><use href="#i-close"/></svg></button></div><label>标题<input id="note-title" maxlength="40" placeholder="给此刻的心情起个名字" required></label><label>想说的话<textarea id="note-body" rows="5" maxlength="500" placeholder="今天有什么值得记住的事？" required></textarea></label><fieldset class="color-field"><legend>选一张纸的颜色</legend><div id="note-colors"></div></fieldset><div class="dialog-actions"><button type="button" class="text-button danger" id="delete-note"><svg><use href="#i-trash"/></svg>删除这张</button><button type="submit" class="button button-dark">贴在这里 <svg><use href="#i-arrow"/></svg></button></div></form></dialog>
-  <dialog id="upload-dialog" class="editor-dialog"><form id="upload-form"><div class="dialog-heading"><div><span class="eyebrow">ADD A LITTLE MEMORY</span><h2>放进新的瞬间</h2></div><button type="button" class="icon-button" data-close aria-label="关闭"><svg><use href="#i-close"/></svg></button></div><label class="upload-zone"><svg><use href="#i-photo"/></svg><strong id="file-label">点击选择照片</strong><span>支持 JPG、PNG、WebP，每次最多 12 张</span><input id="photo-files" type="file" accept="image/jpeg,image/png,image/webp" multiple required></label><label>照片分类<select id="upload-category"><option value="daily">日常切片</option><option value="travel">在路上</option></select></label><p class="dialog-tip">照片会压缩后保存在此浏览器，清除浏览器数据会同时移除内容。</p><button type="submit" class="button button-orange full-width" id="upload-submit">添加到流动相册 <svg><use href="#i-arrow"/></svg></button></form></dialog>
+  <dialog id="upload-dialog" class="editor-dialog"><form id="upload-form"><div class="dialog-heading"><div><span class="eyebrow">ADD A LITTLE MEMORY</span><h2>放进新的瞬间</h2></div><button type="button" class="icon-button" data-close aria-label="关闭"><svg><use href="#i-close"/></svg></button></div><label class="upload-zone"><svg><use href="#i-photo"/></svg><strong id="file-label">点击选择照片</strong><span>支持 JPG、PNG、WebP，每次最多 12 张</span><input id="photo-files" type="file" accept="image/jpeg,image/png,image/webp" multiple required></label><label>照片分类<select id="upload-category"><option value="daily">日常切片</option><option value="travel">在路上</option></select></label><p class="dialog-tip">照片压缩后保存到你的私有云端相册，同一账号可跨设备查看。单张原图最多 20 MB。</p><button type="submit" class="button button-orange full-width" id="upload-submit">添加到流动相册 <svg><use href="#i-arrow"/></svg></button></form></dialog>
   <dialog id="photo-dialog" class="photo-dialog"><button class="icon-button lightbox-close" data-close aria-label="关闭照片"><svg><use href="#i-close"/></svg></button><div class="lightbox-image-wrap"><img id="lightbox-image" alt=""><button class="lightbox-nav previous" id="previous-photo" aria-label="上一张">←</button><button class="lightbox-nav next" id="next-photo" aria-label="下一张">→</button></div><div class="lightbox-info"><div><span class="eyebrow" id="lightbox-category"></span><h2 id="lightbox-caption"></h2><span class="lightbox-date" id="lightbox-date"></span></div><div class="lightbox-actions"><button class="icon-button" id="remove-photo" aria-label="移除照片"><svg><use href="#i-trash"/></svg></button><button class="icon-button favorite-button" id="favorite-photo" aria-label="喜欢照片" aria-pressed="false"><svg><use href="#i-heart"/></svg></button></div></div></dialog>
+  <dialog id="account-dialog" class="editor-dialog account-dialog" aria-labelledby="account-title"><div class="dialog-heading"><div><span class="eyebrow">YOUR MOMENTS, EVERYWHERE</span><h2 id="account-title">让心情跟着你</h2></div><button type="button" class="icon-button" data-close aria-label="关闭"><svg><use href="#i-close"/></svg></button></div><p class="account-intro">换一台设备，也能接着收藏生活。<br>你的照片和小纸条，仅当前登录账号可见。</p><div id="account-signed-out"><form id="login-form"><label>登录邮箱<input id="login-email" type="email" autocomplete="email" placeholder="you@example.com" required></label><button class="button button-orange full-width" id="login-submit" type="submit">发送邮箱登录链接 <svg><use href="#i-arrow"/></svg></button></form><p class="dialog-tip" id="auth-message" role="status">打开邮件中的链接即可登录。在这台设备的同一个浏览器中打开链接。</p></div><div id="account-signed-in" hidden><div class="account-identity"><span class="eyebrow">SIGNED IN AS</span><strong id="account-email"></strong><span id="account-sync-info"></span></div><div class="account-controls"><button type="button" class="button button-orange" id="account-refresh">同步云端 ↻</button><button type="button" class="button button-outline" id="legacy-import" hidden>导入本机旧内容</button><button type="button" class="text-button" id="account-signout">退出登录</button></div><p class="dialog-tip">保存成功后会显示“已保存到云端”。照片和小纸条不会随退出登录而删除。</p></div><details id="cloud-config-details"><summary>连接我的 Supabase 项目</summary><form id="config-form"><label>Project URL<input id="project-url" type="url" autocomplete="off" placeholder="https://项目编号.supabase.co" required></label><label>Publishable key<input id="project-key" type="text" autocomplete="off" spellcheck="false" placeholder="sb_publishable_..." required></label><p class="dialog-tip">这里仅填写公开配置。请先执行配套的数据库脚本，勿填写 Secret key 或 service_role 密钥。</p><button type="submit" class="button button-outline full-width">保存配置并连接</button></form></details></dialog>
+  <dialog id="import-dialog" class="editor-dialog" aria-labelledby="import-title"><div class="dialog-heading"><div><span class="eyebrow">BRING YOUR MEMORIES ALONG</span><h2 id="import-title">把旧时光带上云端</h2></div><button type="button" class="icon-button" data-close aria-label="关闭"><svg><use href="#i-close"/></svg></button></div><p class="account-intro" id="import-description"></p><p class="dialog-tip">本机旧内容将合并到当前账号。同 ID 的项目以云端内容为准；本机原始备份不会删除。请在原来保存内容的浏览器和网站地址执行导入。</p><button class="button button-orange full-width" id="confirm-import">确认导入到当前账号 <svg><use href="#i-arrow"/></svg></button></dialog>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script id="app-script">
+// Only public project configuration belongs here. Never use a secret/service_role key.
+const CLOUD_CONFIG = Object.freeze({url:'https://nedrapuapobylurxzoph.supabase.co',publishableKey:'sb_publishable_48Q0H47k7X7DilVMe-hQNA_wcsQQJaA'});
+const SUPABASE_MODULE = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/+esm';
+const CLOUD_BUCKET = 'rainy-photos';
+const SAMPLE_SOURCE = /^https:\/\/images\.unsplash\.com\//;
+const LOCAL_IMAGE = /^data:image\/(jpeg|png|webp);base64,/;
+const PHOTO_PLACEHOLDER = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="600" height="450"><rect width="100%" height="100%" fill="#344953"/><text x="50%" y="50%" text-anchor="middle" fill="#b9cbd2" font-size="22">照片暂时无法读取</text></svg>');
+
+function validateCloudConfig(value) {
+  const url = new URL(String(value.url || '').trim());
+  if(url.protocol!=='https:' || url.username || url.password || url.search || url.hash || !['','/'].includes(url.pathname))throw new Error('Project URL 需要是完整的 HTTPS 项目地址');
+  const key=String(value.publishableKey||'').trim();
+  if(key.startsWith('sb_secret_'))throw new Error('请使用 Publishable key，不要填写 Secret key');
+  if(!/^sb_publishable_[A-Za-z0-9_-]+$/.test(key)) {
+    let role;
+    try { const segment=key.split('.')[1];role=JSON.parse(atob(segment.replace(/-/g,'+').replace(/_/g,'/'))).role; } catch { /* not a legacy anon key */ }
+    if(role!=='anon')throw new Error('请填写 Publishable key（或旧版 anon 公钥），不要填写管理密钥');
+  }
+  return {url:url.origin,publishableKey:key};
+}
+
+function sanitizeSnapshot(value,{allowLocal=false}={}) {
+  if(!value || !Array.isArray(value.photos) || !Array.isArray(value.notes) || !Array.isArray(value.favorites))throw new Error('心情板数据格式不正确');
+  if(value.photos.length>500 || value.notes.length>500 || value.favorites.length>500)throw new Error('单个心情板最多保存 500 张照片和 500 张便利贴');
+  const text=(v,max)=>typeof v==='string'?v.slice(0,max):'';
+  const seenPhotos=new Set(),seenNotes=new Set();
+  const photos=value.photos.filter(p=>p&&typeof p.id==='string'&&!seenPhotos.has(p.id)&&seenPhotos.add(p.id)).map(p=>{
+    const base={id:text(p.id,100),caption:text(p.caption,60)||'一个新的瞬间',category:p.category==='travel'?'travel':'daily',date:text(p.date,10),sample:!!p.sample};
+    if(typeof p.storagePath==='string'&&/^[a-f0-9-]{36}\/[a-f0-9-]{36}\.(jpg|png|webp)$/.test(p.storagePath))return {...base,sample:false,storagePath:p.storagePath};
+    if(typeof p.src==='string'&&(SAMPLE_SOURCE.test(p.src)||(allowLocal&&LOCAL_IMAGE.test(p.src))))return {...base,src:p.src};
+    throw new Error('照片来源无效；本机照片需要先上传到云端');
+  });
+  const notes=value.notes.filter(n=>n&&typeof n.id==='string'&&!seenNotes.has(n.id)&&seenNotes.add(n.id)).map(n=>({id:text(n.id,100),title:text(n.title,40),body:text(n.body,500),color:['butter','sage','rose','blue','lavender'].includes(n.color)?n.color:'blue',x:Number.isFinite(n.x)?Math.max(0,Math.min(1,n.x)):0,y:Number.isFinite(n.y)?Math.max(0,Math.min(1,n.y)):0,date:text(n.date,10),doodle:text(n.doodle,5)||'♡'}));
+  return {photos,notes,favorites:[...new Set(value.favorites.filter(id=>typeof id==='string'&&seenPhotos.has(id)))]};
+}
+
+class RainyCloud {
+  constructor({clientFactory,onSession=()=>{}}={}) {this.clientFactory=clientFactory;this.onSession=onSession;this.client=null;this.revision=0;this.user=null;this.generation=0;this.subscription=null;}
+  async connect(config) {
+    const valid=validateCloudConfig(config),generation=++this.generation;
+    this.subscription?.unsubscribe();this.user=null;this.revision=0;
+    const factory=this.clientFactory||(await import(SUPABASE_MODULE)).createClient;
+    if(generation!==this.generation)return;
+    this.client=factory(valid.url,valid.publishableKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,flowType:'pkce'}});
+    this.subscription=this.client.auth.onAuthStateChange((_event,session)=>{setTimeout(()=>{if(generation!==this.generation)return;this.user=session?.user||null;this.onSession(this.user);},0);}).data.subscription;
+    const {data,error}=await this.client.auth.getSession();if(error)throw error;
+    if(generation!==this.generation)return;
+    this.user=data.session?.user||null;this.onSession(this.user);
+    return valid;
+  }
+  async sendLoginLink(email,redirectTo) {
+    if(!this.client)throw new Error('请先填写并连接 Supabase 项目');
+    const {error}=await this.client.auth.signInWithOtp({email,options:{emailRedirectTo:redirectTo}});if(error)throw error;
+  }
+  requireUser() {if(!this.client||!this.user)throw new Error('请先登录，再保存到云端');return this.user.id;}
+  async readRow() {const uid=this.requireUser();const {data,error}=await this.client.from('rainy_boards').select('payload,revision,updated_at').eq('user_id',uid).maybeSingle();if(error)throw error;return data;}
+  async load() {
+    const uid=this.requireUser(),generation=this.generation,row=await this.readRow();
+    if(generation!==this.generation||this.user?.id!==uid)throw new Error('登录状态已经变化，请重新同步');
+    const snapshot=row?sanitizeSnapshot(row.payload):{photos:[],notes:[],favorites:[]};
+    const hydrated=await this.hydrate(snapshot);
+    if(generation!==this.generation||this.user?.id!==uid)throw new Error('登录状态已经变化，请重新同步');
+    this.revision=row?.revision||0;
+    return {...hydrated,updatedAt:row?.updated_at||null};
+  }
+  async hydrate(snapshot) {
+    const uid=this.requireUser(),result=structuredClone(snapshot);
+    const paths=result.photos.filter(p=>p.storagePath).map(p=>p.storagePath);
+    if(paths.some(p=>!p.startsWith(uid+'/')))throw new Error('照片不属于当前账号');
+    let missing=0;
+    if(paths.length) {
+      const {data,error}=await this.client.storage.from(CLOUD_BUCKET).createSignedUrls(paths,3600);
+      if(error)throw error;
+      const urls=new Map((data||[]).map(item=>[item.path,item.signedUrl]));
+      result.photos.forEach(p=>{if(p.storagePath){p.src=urls.get(p.storagePath)||PHOTO_PLACEHOLDER;if(p.src===PHOTO_PLACEHOLDER)missing++;}});
+    }
+    return {snapshot:result,missing};
+  }
+  async save(value) {
+    const uid=this.requireUser(),generation=this.generation;
+    const payload={...sanitizeSnapshot(value),version:1,mutationId:crypto.randomUUID()};
+    const {data,error}=await this.client.rpc('save_rainy_board',{p_expected_revision:this.revision,p_payload:payload});
+    if(generation!==this.generation||this.user?.id!==uid)throw new Error('登录状态已经变化，请重新同步');
+    if(error) {
+      // An interrupted response may follow a successful write. Confirm by mutation ID.
+      if(error.code!=='40001') {
+        try {const row=await this.readRow();if(row?.payload?.mutationId===payload.mutationId){this.revision=row.revision;return;}} catch { /* cannot confirm: caller must sync before editing again */ }
+      }
+      if(error.code==='40001')throw Object.assign(new Error('其他设备已更新内容，请点“同步云端”后重新修改'),{code:'CONFLICT'});
+      throw error;
+    }
+    this.revision=data.revision;
+  }
+  async uploadDataUrl(dataUrl,id=crypto.randomUUID()) {
+    const uid=this.requireUser();
+    if(!LOCAL_IMAGE.test(dataUrl)||dataUrl.length>8*1024*1024)throw new Error('照片格式不支持或压缩后仍然过大');
+    const blob=await (await fetch(dataUrl)).blob();
+    const extension={'image/jpeg':'jpg','image/png':'png','image/webp':'webp'}[blob.type];
+    if(!extension||blob.size>5*1024*1024)throw new Error('压缩后照片需要小于 5 MB');
+    const storagePath=`${uid}/${id}.${extension}`;
+    const {error}=await this.client.storage.from(CLOUD_BUCKET).upload(storagePath,blob,{contentType:blob.type,cacheControl:'3600',upsert:false});if(error)throw error;
+    const {data,error:signError}=await this.client.storage.from(CLOUD_BUCKET).createSignedUrl(storagePath,3600);if(signError)throw signError;
+    return {storagePath,src:data.signedUrl};
+  }
+  async removeFiles(paths) {if(!paths.length)return;const uid=this.requireUser();if(paths.some(p=>!p.startsWith(uid+'/')))throw new Error('无权删除其他账号的照片');const {error}=await this.client.storage.from(CLOUD_BUCKET).remove(paths);if(error)throw error;}
+  async signOut() {const {error}=await this.client.auth.signOut({scope:'local'});if(error)throw error;this.user=null;this.revision=0;}
+}
+if(typeof module!=='undefined'&&module.exports)module.exports={RainyCloud,validateCloudConfig,sanitizeSnapshot};
+
 'use strict';
 const $ = (selector, parent = document) => parent.querySelector(selector);
 const $$ = (selector, parent = document) => [...parent.querySelectorAll(selector)];
@@ -105,9 +221,11 @@ const initialNotes = [
  {id:'note-2',title:'窗边，刚刚好',body:'雨点敲着玻璃，\n热咖啡还冒着白气。\n什么都不做，也没有关系。',color:'sage',x:.345,y:.2,date:'2026-10-25',doodle:'☁'},
  {id:'note-3',title:'有些想念像雨',body:'没有特别的理由，\n只是听到这首歌的时候，\n忽然很想和你说说话。',color:'blue',x:.66,y:.16,date:'2026-10-26',doodle:'♡'}
 ];
-let state = {photos:samples, notes:initialNotes, favorites:[]};
-let storageAvailable = true;
-try { const saved = JSON.parse(localStorage.getItem(STORE)); if (saved && Array.isArray(saved.photos) && Array.isArray(saved.notes) && Array.isArray(saved.favorites)) { state = {photos:saved.photos.filter(p=>p && typeof p.id==='string' && typeof p.caption==='string' && typeof p.src==='string' && /^(https:\/\/images\.unsplash\.com\/|data:image\/(jpeg|png|webp);base64,)/.test(p.src)),notes:saved.notes.filter(n=>n && typeof n.id==='string' && typeof n.title==='string' && typeof n.body==='string').map(n=>({...n,x:Number.isFinite(n.x)?Math.max(0,Math.min(1,n.x)):0,y:Number.isFinite(n.y)?Math.max(0,Math.min(1,n.y)):0})),favorites:saved.favorites.filter(id=>typeof id==='string')}; }} catch { storageAvailable = false; }
+const demoState = {photos:samples,notes:initialNotes,favorites:[]};
+let state = structuredClone(demoState), legacyState = null;
+try { const saved=localStorage.getItem(STORE);if(saved)legacyState=sanitizeSnapshot(JSON.parse(saved),{allowLocal:true}); } catch { /* Keep legacy storage untouched even when it cannot be read. */ }
+let cloudReady=false,cloudBusy=false,uploadBusy=false,sessionEpoch=0,activeUserId=null,lastSyncedAt=0;
+const cloud = new RainyCloud({onSession:handleSession});
 let filter = 'all', paused = matchMedia('(prefers-reduced-motion: reduce)').matches, activePhotoId = null, activeNoteId = null, selectedColor = 'butter', toastTimer;
 let depthFrame = 0, pointerX = 0, pointerY = 0;
 function startDepthMotion() {
@@ -140,8 +258,42 @@ $('#photo-rivers').addEventListener('pointermove',event=>{if(event.pointerType==
 $('#photo-rivers').addEventListener('pointerleave',()=>{pointerX=0;pointerY=0;});
 const today = () => new Date().toLocaleDateString('sv-SE');
 function toast(message) { $('#toast').textContent = message; $('#toast').classList.add('visible'); clearTimeout(toastTimer); toastTimer = setTimeout(()=>$('#toast').classList.remove('visible'),3200); }
-function persist() { try { localStorage.setItem(STORE,JSON.stringify(state)); storageAvailable=true; $('#save-status').textContent='已保存到此浏览器'; return true; } catch { storageAvailable=false; $('#save-status').textContent='保存失败，请保留页面'; toast('浏览器存储空间不足或不可用，本次修改尚未保存。'); return false; } }
-function commit(change) { const before = structuredClone(state); change(); if (persist()) return true; state = before; return false; }
+function setCloudStatus(message,status='idle') {$('#cloud-status').textContent=message;$('.cloud-strip').dataset.state=status;$('#save-status').textContent=message;$('#account-sync-info').textContent=message;}
+function updateBusyUI() {
+ const busy=cloudBusy||uploadBusy;document.body.classList.toggle('cloud-saving',busy);
+ $$('[data-action="new-note"],[data-action="upload"],.note-edit,.note-grip,#note-form [type="submit"],#delete-note,#favorite-photo,#remove-photo,#account-signout,#account-refresh,#cloud-refresh,#legacy-import,#confirm-import,#config-form [type="submit"]').forEach(button=>button.disabled=busy);
+}
+function renderAccount() {
+ const signedIn=!!cloud.user;$('#account-label').textContent=signedIn?'我的云端':'登录同步';$('#account-button').setAttribute('aria-label',signedIn?'管理我的云端账号':'登录云端同步');$('#account-signed-in').hidden=!signedIn;$('#account-signed-out').hidden=signedIn;$('#cloud-connect').hidden=signedIn;$('#cloud-refresh').hidden=!signedIn;$('#account-email').textContent=cloud.user?.email||'';$('#legacy-import').hidden=!signedIn||!legacyState||(legacyState.photos.length+legacyState.notes.length===0);updateBusyUI();
+}
+function requireCloud({allowUpload=false}={}) {
+ if(!cloud.user){openAccount();toast('登录后即可保存照片和小纸条');return false;}
+ if(!cloudReady){openAccount();toast('请先点“同步云端”，确认已经读取最新内容');return false;}
+ if(cloudBusy||(uploadBusy&&!allowUpload)){toast('上一项操作仍在保存，请稍等');return false;}return true;
+}
+async function commit(change,{allowUpload=false}={}) {
+ if(!requireCloud({allowUpload}))return false;
+ const before=structuredClone(state),epoch=sessionEpoch;
+ change();cloudBusy=true;updateBusyUI();setCloudStatus('正在保存到云端…','busy');
+ try {await cloud.save(state);if(epoch!==sessionEpoch)return false;lastSyncedAt=Date.now();setCloudStatus('已保存到云端','ready');return true;}
+ catch(error){if(epoch===sessionEpoch){state=before;cloudReady=false;renderPhotos();renderNotes();setCloudStatus(error.code==='CONFLICT'?'另一台设备已更新，请先同步':'未能确认保存，请先同步云端','error');toast(error.message||'云端保存失败，请检查网络后同步');}return false;}
+ finally {cloudBusy=false;updateBusyUI();}
+}
+async function refreshCloud({quiet=false}={}) {
+ if(!cloud.user||cloudBusy||uploadBusy)return;
+ const epoch=sessionEpoch;cloudBusy=true;updateBusyUI();setCloudStatus('正在读取云端内容…','busy');
+ try {const result=await cloud.load();if(epoch!==sessionEpoch)return;state=result.snapshot;cloudReady=true;lastSyncedAt=Date.now();renderPhotos();renderNotes();setCloudStatus('已与云端同步','ready');if(result.missing)toast(`${result.missing} 张照片暂时无法读取，其余内容已同步`);}
+ catch(error){if(epoch===sessionEpoch){cloudReady=false;setCloudStatus('云端读取失败，请检查配置或网络','error');if(!quiet)toast(error.message||'请检查数据库脚本是否已执行');}}
+ finally {cloudBusy=false;updateBusyUI();renderAccount();}
+}
+async function handleSession(user) {
+ if((user?.id||null)===activeUserId){renderAccount();return;}
+ sessionEpoch++;activeUserId=user?.id||null;cloudReady=false;
+ if(!user){state=structuredClone(demoState);$$('dialog[open]').forEach(d=>d.close());$('#lightbox-image').removeAttribute('src');renderPhotos();renderNotes();setCloudStatus('尚未登录 · 当前展示示例');renderAccount();return;}
+ $$('dialog[open]').filter(d=>d.id!=='account-dialog').forEach(d=>d.close());$('#lightbox-image').removeAttribute('src');activePhotoId=null;activeNoteId=null;
+ state={photos:[],notes:[],favorites:[]};renderPhotos();renderNotes();renderAccount();await refreshCloud();if(cloudReady&&$('#account-dialog').open)$('#account-dialog').close();
+}
+function openAccount() {if(cloudBusy||uploadBusy){toast('正在保存，请稍等');return;}renderAccount();if(!$('#account-dialog').open)openDialog($('#account-dialog'));}
 function visiblePhotos() { return state.photos.filter(p=>filter==='all'||(filter==='favorite'?state.favorites.includes(p.id):p.category===filter)); }
 function renderPhotos() {
   cancelAnimationFrame(depthFrame);
@@ -178,8 +330,8 @@ function showPhoto(id) { $('#photo-rivers').classList.add('modal-paused'); activ
 function stepPhoto(direction) {const photos=visiblePhotos();if(!photos.length)return;const index=photos.findIndex(p=>p.id===activePhotoId);showPhoto(photos[(index+direction+photos.length)%photos.length].id);}
 $('#previous-photo').addEventListener('click',()=>stepPhoto(-1));$('#next-photo').addEventListener('click',()=>stepPhoto(1));
 $('#photo-dialog').addEventListener('keydown',e=>{if(e.key==='ArrowLeft'){e.preventDefault();stepPhoto(-1);}if(e.key==='ArrowRight'){e.preventDefault();stepPhoto(1);}});
-$('#favorite-photo').addEventListener('click',()=>{if(commit(()=>{state.favorites=state.favorites.includes(activePhotoId)?state.favorites.filter(id=>id!==activePhotoId):[...state.favorites,activePhotoId];})){if(filter==='favorite'&&!state.favorites.includes(activePhotoId)){const next=visiblePhotos()[0];if(next)showPhoto(next.id);else $('#photo-dialog').close();}else showPhoto(activePhotoId);}});
-$('#remove-photo').addEventListener('click',()=>{const id=activePhotoId;if(commit(()=>{state.photos=state.photos.filter(p=>p.id!==id);state.favorites=state.favorites.filter(item=>item!==id);})){const next=visiblePhotos()[0];if(next)showPhoto(next.id);else $('#photo-dialog').close();toast('已移除这张照片');}});
+$('#favorite-photo').addEventListener('click',async()=>{const id=activePhotoId;if(await commit(()=>{state.favorites=state.favorites.includes(id)?state.favorites.filter(item=>item!==id):[...state.favorites,id];})){if(filter==='favorite'&&!state.favorites.includes(id)){const next=visiblePhotos()[0];if(next)showPhoto(next.id);else $('#photo-dialog').close();}else showPhoto(id);}});
+$('#remove-photo').addEventListener('click',async()=>{const id=activePhotoId,path=state.photos.find(p=>p.id===id)?.storagePath;if(await commit(()=>{state.photos=state.photos.filter(p=>p.id!==id);state.favorites=state.favorites.filter(item=>item!==id);})){const next=visiblePhotos()[0];if(next)showPhoto(next.id);else $('#photo-dialog').close();toast('已从云端相册移除');if(path){try{await cloud.removeFiles([path]);}catch{toast('相册记录已移除，照片文件清理失败，可稍后在存储桶清理');}}}});
 function boardDimensions() { const board=$('#note-board');return {board,width:board.clientWidth,height:board.clientHeight}; }
 function placeNote(element,note) {const {width,height}=boardDimensions();element.style.left=`${Math.max(8,Math.min(width-element.offsetWidth-8,note.x*(width-element.offsetWidth)))}px`;element.style.top=`${Math.max(8,Math.min(height-element.offsetHeight-8,note.y*(height-element.offsetHeight)))}px`;}
 function renderNotes() {
@@ -192,25 +344,46 @@ function renderNotes() {
  const add=document.createElement('button');add.className='add-note-card';add.dataset.action='new-note';add.innerHTML=`${icon('plus')}<span>下一张，写点什么？</span><small>A LITTLE NOTE TO LIFE</small>`;if(state.notes.length!==3){const col=state.notes.length%columns,row=Math.floor(state.notes.length/columns);add.style.left=`${16+col*width/columns}px`;add.style.top=`${34+row*252}px`;add.style.right='auto';}else if(columns===3){add.style.left='30px';add.style.top='300px';add.style.right='auto';}board.append(add);$('#note-count').textContent=`${state.notes.length} 张小纸条`;
 }
 function setupDrag(element,note) {const grip=$('.note-grip',element);let drag=null;
- grip.addEventListener('pointerdown',event=>{if(event.button!==0)return;event.preventDefault();const {width,height}=boardDimensions();drag={pointer:event.pointerId,x:event.clientX,y:event.clientY,left:element.offsetLeft,top:element.offsetTop,width,height};grip.setPointerCapture(event.pointerId);element.classList.add('dragging');});
+ grip.addEventListener('pointerdown',event=>{if(event.button!==0)return;if(!requireCloud())return;event.preventDefault();const {width,height}=boardDimensions();drag={pointer:event.pointerId,x:event.clientX,y:event.clientY,left:element.offsetLeft,top:element.offsetTop,width,height};grip.setPointerCapture(event.pointerId);element.classList.add('dragging');});
  grip.addEventListener('pointermove',event=>{if(!drag||event.pointerId!==drag.pointer)return;const left=Math.max(8,Math.min(drag.width-element.offsetWidth-8,drag.left+event.clientX-drag.x));const top=Math.max(8,Math.min(drag.height-element.offsetHeight-8,drag.top+event.clientY-drag.y));element.style.left=`${left}px`;element.style.top=`${top}px`;});
- function finish(event){if(!drag||event.pointerId!==drag.pointer)return;drag=null;element.classList.remove('dragging');if(grip.hasPointerCapture(event.pointerId))grip.releasePointerCapture(event.pointerId);const {width,height}=boardDimensions();if(!commit(()=>{note.x=element.offsetLeft/Math.max(1,width-element.offsetWidth);note.y=element.offsetTop/Math.max(1,height-element.offsetHeight);})){renderNotes();}}
+ async function finish(event){if(!drag||event.pointerId!==drag.pointer)return;drag=null;element.classList.remove('dragging');if(grip.hasPointerCapture(event.pointerId))grip.releasePointerCapture(event.pointerId);const {width,height}=boardDimensions();if(!await commit(()=>{note.x=element.offsetLeft/Math.max(1,width-element.offsetWidth);note.y=element.offsetTop/Math.max(1,height-element.offsetHeight);})){renderNotes();}}
  grip.addEventListener('pointerup',finish);grip.addEventListener('pointercancel',event=>{if(!drag)return;element.style.left=`${drag.left}px`;element.style.top=`${drag.top}px`;drag=null;element.classList.remove('dragging');if(grip.hasPointerCapture(event.pointerId))grip.releasePointerCapture(event.pointerId);});
- grip.addEventListener('keydown',event=>{const delta={ArrowLeft:[-10,0],ArrowRight:[10,0],ArrowUp:[0,-10],ArrowDown:[0,10]}[event.key];if(!delta)return;event.preventDefault();const {width,height}=boardDimensions();if(commit(()=>{note.x=Math.max(0,Math.min(1,(element.offsetLeft+delta[0])/Math.max(1,width-element.offsetWidth)));note.y=Math.max(0,Math.min(1,(element.offsetTop+delta[1])/Math.max(1,height-element.offsetHeight)));}))placeNote(element,note);});
+ grip.addEventListener('keydown',async event=>{const delta={ArrowLeft:[-10,0],ArrowRight:[10,0],ArrowUp:[0,-10],ArrowDown:[0,10]}[event.key];if(!delta)return;event.preventDefault();const {width,height}=boardDimensions();if(await commit(()=>{note.x=Math.max(0,Math.min(1,(element.offsetLeft+delta[0])/Math.max(1,width-element.offsetWidth)));note.y=Math.max(0,Math.min(1,(element.offsetTop+delta[1])/Math.max(1,height-element.offsetHeight)));}))placeNote(element,note);});
 }
 function renderColors() {$('#note-colors').innerHTML=colors.map(c=>`<button type="button" class="color-swatch" data-color="${c.id}" style="--swatch:${c.value}" aria-label="${c.name}" aria-pressed="${selectedColor===c.id}"></button>`).join('');$$('[data-color]').forEach(b=>b.addEventListener('click',()=>{selectedColor=b.dataset.color;renderColors();}));}
-function editNote(id=null){activeNoteId=id;const note=state.notes.find(n=>n.id===id);$('#note-form').reset();$('#note-title').value=note?.title||'';$('#note-body').value=note?.body||'';selectedColor=note?.color||colors[state.notes.length%colors.length].id;$('#delete-note').hidden=!note;$('#note-dialog-title').textContent=note?'编辑这张小纸条':'写一张小纸条';renderColors();openDialog($('#note-dialog'));}
-$('#note-form').addEventListener('submit',event=>{event.preventDefault();const title=$('#note-title').value.trim(),body=$('#note-body').value.trim();if(!title||!body){toast('标题和想说的话都需要填写哦');return;}if(commit(()=>{const existing=state.notes.find(n=>n.id===activeNoteId);if(existing)Object.assign(existing,{title,body,color:selectedColor});else state.notes.push({id:crypto.randomUUID(),title,body,color:selectedColor,x:.06+(state.notes.length%3)*.27,y:.1,date:today(),doodle:'♡'});})){renderNotes();$('#note-dialog').close();toast('小纸条已经贴好啦');}});
-$('#delete-note').addEventListener('click',()=>{if(commit(()=>{state.notes=state.notes.filter(n=>n.id!==activeNoteId);})){renderNotes();$('#note-dialog').close();toast('已移除这张小纸条');}});
+function editNote(id=null){if(!requireCloud())return;activeNoteId=id;const note=state.notes.find(n=>n.id===id);$('#note-form').reset();$('#note-title').value=note?.title||'';$('#note-body').value=note?.body||'';selectedColor=note?.color||colors[state.notes.length%colors.length].id;$('#delete-note').hidden=!note;$('#note-dialog-title').textContent=note?'编辑这张小纸条':'写一张小纸条';renderColors();openDialog($('#note-dialog'));}
+$('#note-form').addEventListener('submit',async event=>{event.preventDefault();const title=$('#note-title').value.trim(),body=$('#note-body').value.trim();if(!title||!body){toast('标题和想说的话都需要填写哦');return;}const id=activeNoteId;if(await commit(()=>{const existing=state.notes.find(n=>n.id===id);if(existing)Object.assign(existing,{title,body,color:selectedColor});else state.notes.push({id:crypto.randomUUID(),title,body,color:selectedColor,x:.06+(state.notes.length%3)*.27,y:.1,date:today(),doodle:'♡'});})){renderNotes();$('#note-dialog').close();toast('小纸条已保存到云端');}});
+$('#delete-note').addEventListener('click',async()=>{const id=activeNoteId;if(await commit(()=>{state.notes=state.notes.filter(n=>n.id!==id);})){renderNotes();$('#note-dialog').close();toast('已从云端移除这张小纸条');}});
 $('#photo-files').addEventListener('change',()=>{$('#file-label').textContent=$('#photo-files').files.length?`已选择 ${$('#photo-files').files.length} 张照片`:'点击选择照片';});
 async function compressImage(file) {if(!['image/jpeg','image/png','image/webp'].includes(file.type))throw new Error('请选择 JPG、PNG 或 WebP 格式的照片');if(file.size>20*1024*1024)throw new Error('单张照片请小于 20 MB');const bitmap=await createImageBitmap(file);try{const scale=Math.min(1,1000/Math.max(bitmap.width,bitmap.height)),canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(bitmap.width*scale));canvas.height=Math.max(1,Math.round(bitmap.height*scale));const ctx=canvas.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.drawImage(bitmap,0,0,canvas.width,canvas.height);return canvas.toDataURL('image/jpeg',.78);}finally{bitmap.close();}}
-$('#upload-form').addEventListener('submit',async event=>{event.preventDefault();const files=[...$('#photo-files').files];if(files.length>12){toast('每次最多添加 12 张照片');return;}if(!files.length)return;const button=$('#upload-submit');button.disabled=true;button.textContent='正在整理照片…';try{const category=$('#upload-category').value,newPhotos=[];for(const file of files){newPhotos.push({id:crypto.randomUUID(),caption:file.name.replace(/\.[^.]+$/,'').slice(0,60)||'一个新的瞬间',src:await compressImage(file),category,date:today(),sample:false});}if(commit(()=>state.photos.unshift(...newPhotos))){setFilter('all');$('#upload-dialog').close();toast(`已收藏 ${newPhotos.length} 个新瞬间`);}}catch(error){toast(error.message||'照片读取失败，请重新选择');}finally{button.disabled=false;button.innerHTML=`添加到流动相册 ${icon('arrow')}`;}});
-document.addEventListener('click',event=>{const photo=event.target.closest('[data-photo]');if(photo){showPhoto(photo.dataset.photo);return;}const action=event.target.closest('[data-action]')?.dataset.action;if(action==='new-note')editNote();if(action==='upload'){$('#upload-form').reset();$('#file-label').textContent='点击选择照片';openDialog($('#upload-dialog'));}if(action==='show-all')setFilter('all');});
+$('#upload-form').addEventListener('submit',async event=>{event.preventDefault();if(!requireCloud())return;const files=[...$('#photo-files').files];if(files.length>12){toast('每次最多添加 12 张照片');return;}if(!files.length)return;const button=$('#upload-submit'),newPhotos=[],uploadedPaths=[];let metadataAttempted=false;uploadBusy=true;updateBusyUI();button.disabled=true;const epoch=sessionEpoch;try{const category=$('#upload-category').value;for(const [index,file] of files.entries()){button.textContent=`正在上传 ${index+1} / ${files.length}…`;const id=crypto.randomUUID(),image=await cloud.uploadDataUrl(await compressImage(file),id);uploadedPaths.push(image.storagePath);if(epoch!==sessionEpoch)throw new Error('登录状态已变化，请重新上传');newPhotos.push({id,caption:file.name.replace(/\.[^.]+$/,'').slice(0,60)||'一个新的瞬间',...image,category,date:today(),sample:false});}metadataAttempted=true;if(await commit(()=>state.photos.unshift(...newPhotos),{allowUpload:true})){setFilter('all');$('#upload-dialog').close();toast(`已将 ${newPhotos.length} 个瞬间保存到云端`);}}catch(error){if(!metadataAttempted&&uploadedPaths.length&&epoch===sessionEpoch){try{await cloud.removeFiles(uploadedPaths);}catch{/* Unreferenced files can be cleaned from Storage later. */}}toast(error.message||'上传失败，请检查网络后重试');}finally{uploadBusy=false;updateBusyUI();button.disabled=false;button.innerHTML=`添加到流动相册 ${icon('arrow')}`;}});
+document.addEventListener('click',event=>{const photo=event.target.closest('[data-photo]');if(photo){showPhoto(photo.dataset.photo);return;}const action=event.target.closest('[data-action]')?.dataset.action;if(action==='new-note')editNote();if(action==='upload'&&requireCloud()){$('#upload-form').reset();$('#file-label').textContent='点击选择照片';openDialog($('#upload-dialog'));}if(action==='show-all')setFilter('all');});
 let resizeTimer;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>{renderNotes();renderPhotos();},180);});
 if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting)$$('.nav-link').forEach(link=>link.classList.toggle('active',link.getAttribute('href')===`#${entry.target.id}`));});},{rootMargin:'-15% 0px -55% 0px'});observer.observe($('#photos'));observer.observe($('#notes'));}
 const rainRoot=$('.rain-atmosphere');
 if(rainRoot){for(let i=0;i<34;i++){const drop=document.createElement('i');drop.style.setProperty('--x',`${(i*37.3)%115}%`);drop.style.setProperty('--delay',`${-(i*.43)%9}s`);drop.style.setProperty('--duration',`${4+(i%7)*.6}s`);drop.style.setProperty('--length',`${25+(i%5)*13}px`);rainRoot.append(drop);}}
-renderPhotos();renderNotes();updatePause();if(!storageAvailable){$('#save-status').textContent='浏览器存储不可用';toast('当前浏览器无法读取存储，内容暂时仅留在此页面。');}
+$('#account-button').addEventListener('click',openAccount);$('#cloud-connect').addEventListener('click',openAccount);
+$('#cloud-refresh').addEventListener('click',()=>refreshCloud());$('#account-refresh').addEventListener('click',()=>refreshCloud());
+$('#account-signout').addEventListener('click',async()=>{if(cloudBusy||uploadBusy)return;try{await cloud.signOut();await handleSession(null);}catch(error){toast(error.message||'退出失败，请重试');}});
+$('#login-form').addEventListener('submit',async event=>{event.preventDefault();const button=$('#login-submit');if(!['http:','https:'].includes(location.protocol)){toast('邮箱登录请通过本地服务器或 GitHub Pages 打开网站');return;}button.disabled=true;try{await cloud.sendLoginLink($('#login-email').value.trim(),location.origin+location.pathname);$('#auth-message').textContent='登录邮件已发送，请查看收件箱或垃圾邮件。在这台设备的同一个浏览器打开邮件链接。';toast('登录链接已发送');}catch(error){$('#auth-message').textContent=error.message||'邮件发送失败，请检查邮箱及项目配置';}finally{button.disabled=false;}});
+$('#config-form').addEventListener('submit',async event=>{event.preventDefault();if(cloudBusy||uploadBusy)return;if(cloud.user){toast('更换项目之前请先退出当前账号');return;}const button=$('#config-form [type="submit"]');button.disabled=true;try{const valid=validateCloudConfig({url:$('#project-url').value,publishableKey:$('#project-key').value});setCloudStatus('正在连接云端项目…','busy');await cloud.connect(valid);try{localStorage.setItem('rainy-cloud-config-v1',JSON.stringify(valid));}catch{toast('配置仅用于当前页面；部署时可直接填写到 HTML');}$('#cloud-config-details').open=false;if(!cloud.user)setCloudStatus('云端已连接 · 请登录');$('#auth-message').textContent='项目已连接，输入邮箱获取登录链接。';}catch(error){setCloudStatus('项目连接失败，请检查配置','error');toast(error.message||'无法连接项目');}finally{button.disabled=false;renderAccount();}});
+$('#legacy-import').addEventListener('click',()=>{if(!requireCloud()||!legacyState)return;$('#import-description').textContent=`发现本机旧版本保存的 ${legacyState.photos.length} 张照片、${legacyState.notes.length} 张便利贴。将导入到 ${cloud.user.email||'当前账号'}。`;openDialog($('#import-dialog'));});
+$('#confirm-import').addEventListener('click',async()=>{
+ if(!requireCloud()||!legacyState)return;
+ const epoch=sessionEpoch,newPhotos=[],newNotes=legacyState.notes.filter(n=>!state.notes.some(existing=>existing.id===n.id)),paths=[];let metadataAttempted=false;uploadBusy=true;updateBusyUI();const button=$('#confirm-import');
+ try {for(const [index,photo] of legacyState.photos.entries()){if(state.photos.some(p=>p.id===photo.id))continue;button.textContent=`正在导入照片 ${index+1} / ${legacyState.photos.length}…`;if(LOCAL_IMAGE.test(photo.src||'')){const id=/^[a-f0-9-]{36}$/.test(photo.id)?photo.id:crypto.randomUUID(),image=await cloud.uploadDataUrl(photo.src,id);paths.push(image.storagePath);newPhotos.push({...photo,id,...image,sample:false});}else newPhotos.push({...photo});if(epoch!==sessionEpoch)throw new Error('登录状态已变化，请重新同步');}
+  // IDs of uploaded local photos can change; match their old IDs for favorite migration.
+  const oldToNew=new Map();let newIndex=0;for(const old of legacyState.photos){if(state.photos.some(p=>p.id===old.id))oldToNew.set(old.id,old.id);else oldToNew.set(old.id,newPhotos[newIndex++].id);}
+  const importedFavorites=legacyState.favorites.map(id=>oldToNew.get(id)).filter(Boolean);
+  metadataAttempted=true;if(await commit(()=>{state.photos.push(...newPhotos);state.notes.push(...structuredClone(newNotes));state.favorites=[...new Set([...state.favorites,...importedFavorites])];},{allowUpload:true})){renderPhotos();renderNotes();$('#import-dialog').close();$('#account-dialog').close();toast('本机旧内容已合并到云端，原始备份仍保留');}
+ }catch(error){if(!metadataAttempted&&paths.length&&epoch===sessionEpoch){try{await cloud.removeFiles(paths);}catch{/* Do not delete uncertain metadata references. */}}toast(error.message||'导入失败，本机旧内容仍保留');}
+ finally{uploadBusy=false;updateBusyUI();button.innerHTML=`确认导入到当前账号 ${icon('arrow')}`;}
+});
+setInterval(()=>{if(cloud.user&&cloudReady&&!cloudBusy&&!uploadBusy&&!document.hidden&&!$$('dialog[open]').length)refreshCloud({quiet:true});},60000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&cloud.user&&Date.now()-lastSyncedAt>20000&&!$$('dialog[open]').length)refreshCloud({quiet:true});});
+window.addEventListener('beforeunload',event=>{if(cloudBusy||uploadBusy){event.preventDefault();event.returnValue='';}});
+renderPhotos();renderNotes();updatePause();renderAccount();
+(async()=>{let config=CLOUD_CONFIG;try{if(!config.url)config=JSON.parse(localStorage.getItem('rainy-cloud-config-v1'))||config;}catch{/* Missing browser storage does not prevent public configuration. */}if(config.url&&config.publishableKey){$('#project-url').value=config.url;$('#project-key').value=config.publishableKey;try{setCloudStatus('正在连接云端项目…','busy');await cloud.connect(config);if(!cloud.user)setCloudStatus('云端已连接 · 请登录');}catch(error){setCloudStatus('项目连接失败，请检查配置','error');toast(error.message||'云端服务暂不可用');}}else{$('#cloud-config-details').open=true;setCloudStatus('云端尚未配置 · 当前为示例');}})();
 
 </script>
 </body>
