@@ -76,9 +76,23 @@ body{background:radial-gradient(ellipse at 80% 8%,#34464e70,transparent 43%),lin
 @media(max-width:1450px){.photo-rivers{margin-inline:32px;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px 26px}}
 @media(max-width:1000px){.photo-rivers{grid-template-columns:repeat(3,minmax(0,1fr));padding:35px 28px;gap:32px 24px}}
 @media(max-width:700px){.photo-rivers{grid-template-columns:repeat(2,minmax(0,1fr));margin-inline:16px;padding:29px 18px 32px;gap:29px 19px}.photo-rivers>.photo-card:nth-child(5n+2),.photo-rivers>.photo-card:nth-child(5n+4){margin-top:0}.photo-rivers>.photo-card:nth-child(even){margin-top:12px}.photo-rivers>.photo-card img{height:auto}.photo-caption{gap:3px}.photo-caption strong{font-size:9px}.photo-caption span{font-size:7px}.wall-hint{font-size:8px;letter-spacing:0}}
+/* Keep the document width unchanged while modal dialogs lock scrolling. */
+html{scrollbar-gutter:stable}
+.sticky-note{width:232px;min-height:212px;padding:0 21px 18px;background-image:none}
+.note-grip{height:26px;min-height:26px}.note-grip svg{width:15px;height:15px}
+.note-edit{min-height:132px;padding-top:4px}.note-edit h3{font-size:17px;line-height:1.6;margin-bottom:11px}.note-edit p{font-size:12px;line-height:1.95;-webkit-line-clamp:4}
+.note-meta{margin-top:12px;font-size:9px}.note-doodle{font-size:20px}
+.add-note-card{width:205px;height:206px;right:36px;top:58px;font-size:12px;gap:13px}.add-note-card>svg{width:28px;height:28px}.add-note-card small{font-size:9px;letter-spacing:1px}
+@media(max-width:1100px){.sticky-note{width:210px}.add-note-card{width:180px;right:25px}}
+@media(max-width:700px){.sticky-note{width:calc(50% - 24px);min-height:210px;padding:0 13px 13px}.note-edit h3{font-size:15px;margin-bottom:9px}.note-edit p{font-size:11px;line-height:1.8;-webkit-line-clamp:5}.note-meta{font-size:8px}.add-note-card{width:calc(50% - 24px);height:205px;right:16px;top:299px;font-size:11px;gap:10px}.add-note-card small{font-size:8px;letter-spacing:0}}
+@media(max-width:380px){.sticky-note{padding-inline:10px}.note-edit h3{font-size:13px}.note-edit p{font-size:10px}}
+.river-bottom,.board-footer{justify-content:flex-end}
 main{overflow-x:clip}
 @media(max-width:700px){.hero{grid-template-columns:minmax(0,1fr)}.nav-link{white-space:nowrap}.hero-art{max-width:100%;overflow:visible}}
 @media(max-width:380px){.site-header{gap:10px}.brand{gap:5px;font-size:19px}.brand-flower{width:27px;height:27px}.brand-en{font-size:5px;letter-spacing:.5px}.site-header nav{gap:12px}.nav-link{font-size:10px}.header-add{width:29px;height:29px;min-height:29px;margin-left:0}.hero h1{font-size:35px;letter-spacing:2px}.hero-copy .eyebrow{font-size:6px;letter-spacing:1px}.hero-art{transform:scale(.68);transform-origin:35% 40%;margin-top:-15px;margin-bottom:-20px}.hero-polaroid{left:-10px}.hero-paper{left:160px}.hero-star{right:-30px}.orbit-text{right:-35px}.notes-section .section-title{gap:5px}.notes-section .section-title h2{font-size:13px;letter-spacing:0}.notes-section .button{font-size:9px;padding-inline:6px}.filter{font-size:9px;padding:7px}.section-title h2{font-size:16px}.live-indicator{font-size:8px}.sticky-note{padding-inline:10px}.note-edit h3{font-size:13px}.note-edit p{font-size:10px}.closing p{font-size:14px;letter-spacing:.5px}.closing-en{letter-spacing:.6px}}
+
+.photo-section{padding-bottom:44px}.photo-section .section-top>.button{min-height:36px;font-size:11px;padding:8px 13px}.photo-section .section-top>.button svg{width:14px;height:14px}
+@media(max-width:700px){.photo-section{padding-bottom:30px}.photo-section .section-top>.button{font-size:10px;padding:7px 9px;min-height:32px;gap:4px}}
 
 </style>
 </head>
@@ -99,22 +113,21 @@ main{overflow-x:clip}
   <div class="rain-atmosphere" aria-hidden="true"></div>
   <header class="site-header">
     <a class="brand" href="#" aria-label="听雨首页"><svg class="brand-flower"><use href="#i-rain"/></svg><span>听雨<span class="brand-en">RAINY MOMENTS</span></span></a>
-    <nav aria-label="主导航"><a class="nav-link active" href="#photos">照片墙</a><a class="nav-link" href="#notes">便签</a></nav>
-    <div class="header-actions"><button class="button button-outline account-button" id="account-button"><svg><use href="#i-rain"/></svg><span id="account-label">登录同步</span></button><button class="button button-dark header-add" data-action="upload" aria-label="添加照片"><svg><use href="#i-plus"/></svg><span>添加照片</span></button></div>
+    <div class="header-actions"><button class="button button-outline account-button" id="account-button"><svg><use href="#i-rain"/></svg><span id="account-label">登录同步</span></button></div>
   </header>
-  <div class="cloud-strip page-width"><span><i class="save-dot" id="cloud-dot"></i><span id="cloud-status" role="status">云端尚未连接</span></span><button class="text-button" id="cloud-refresh" hidden>同步云端 ↻</button><button class="text-button" id="cloud-connect">登录并同步 ↗</button></div>
+  <div class="cloud-strip page-width"><span><i class="save-dot" id="cloud-dot"></i><span id="cloud-status" role="status">云端尚未连接</span></span><button class="text-button" id="cloud-refresh" hidden>同步云端 ↻</button></div>
   <main>
     <section class="hero page-width">
-      <div class="hero-copy"><div class="eyebrow"><span class="small-line"></span> PHOTOS &amp; NOTES</div><h1>照片与便签，<br>放在一面墙上。</h1><button class="button button-orange" data-action="new-note"><svg><use href="#i-note"/></svg>添加便签<svg class="end-arrow"><use href="#i-arrow"/></svg></button></div>
+      <div class="hero-copy"><div class="eyebrow"><span class="small-line"></span> PHOTOS &amp; NOTES</div><h1>照片与便签，<br>放在一面墙上。</h1></div>
       <div class="hero-art" aria-hidden="true"><span class="orbit-text">MY PHOTO WALL</span><div class="hero-polaroid"><img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=650&q=85" alt="" fetchpriority="high"><span>photo no. 01</span></div><div class="hero-paper"><span class="tape"></span><span class="paper-date">WEEKEND PLAN</span><p>周末安排<br>散步 · 看展 · 拍照</p><span class="paper-heart">☂</span></div><span class="hero-star">☾</span></div>
     </section>
     <section class="photo-section" id="photos" aria-labelledby="photos-title">
-      <div class="section-top page-width"><div class="section-title"><span class="section-index">01 /</span><h2 id="photos-title">照片墙</h2></div></div>
-      <div class="filter-row page-width"><div class="filter-tabs" role="group" aria-label="照片分类"><button class="filter active" data-filter="all" aria-pressed="true">全部瞬间 <span id="photo-count">10</span></button><button class="filter" data-filter="travel" aria-pressed="false">在路上</button><button class="filter" data-filter="daily" aria-pressed="false">日常切片</button><button class="filter" data-filter="favorite" aria-pressed="false"><svg><use href="#i-heart"/></svg>我的喜欢</button></div><span class="interaction-hint">点击照片放大 <span>↗</span></span></div>
+      <div class="section-top page-width"><div class="section-title"><span class="section-index">01 /</span><h2 id="photos-title">照片墙</h2></div><button class="button button-outline" data-action="upload"><svg><use href="#i-plus"/></svg>添加照片</button></div>
+      <div class="filter-row page-width"><div class="filter-tabs" role="group" aria-label="照片分类"><button class="filter active" data-filter="all" aria-pressed="true">全部瞬间 <span id="photo-count">10</span></button><button class="filter" data-filter="travel" aria-pressed="false">在路上</button><button class="filter" data-filter="daily" aria-pressed="false">日常切片</button><button class="filter" data-filter="favorite" aria-pressed="false"><svg><use href="#i-heart"/></svg>我的喜欢</button></div></div>
       <div class="photo-rivers" id="photo-rivers"></div>
-      <div class="river-bottom page-width"><span>照片支持分类与收藏。</span><button class="text-button" data-action="upload">添加照片 <svg><use href="#i-plus"/></svg></button></div>
+      
     </section>
-    <section class="notes-section page-width" id="notes" aria-labelledby="notes-title"><div class="section-top"><div class="section-title"><span class="section-index">02 /</span><h2 id="notes-title">便签墙</h2></div><button class="button button-outline" data-action="new-note"><svg><use href="#i-plus"/></svg>新建便利贴</button></div><div class="notes-caption"><p>记录待办、备忘或照片说明。</p><span><svg><use href="#i-grip"/></svg> 拖动整理 · 点击编辑</span></div><div class="note-board" id="note-board" aria-label="可拖动的便利贴墙"></div><div class="board-footer"><span><i class="save-dot"></i><span id="save-status">登录后可保存到云端 · 当前为示例</span></span><span id="note-count"></span></div></section>
+    <section class="notes-section page-width" id="notes" aria-labelledby="notes-title"><div class="section-top"><div class="section-title"><span class="section-index">02 /</span><h2 id="notes-title">便签墙</h2></div><button class="button button-outline" data-action="new-note"><svg><use href="#i-plus"/></svg>新建便利贴</button></div><div class="notes-caption"><p>记录待办、备忘或照片说明。</p></div><div class="note-board" id="note-board" aria-label="可拖动的便利贴墙"></div><div class="board-footer"><span id="note-count"></span></div></section>
     
   </main>
   <footer class="site-footer page-width"><a class="footer-brand" href="#">听雨 <span>RAINY MOMENTS</span></a><span>照片与便签 · 云端同步</span><a href="#">回到顶部 ↑</a></footer>
@@ -280,13 +293,13 @@ const cloud = new RainyCloud({onSession:handleSession});
 let filter = 'all', activePhotoId = null, activeNoteId = null, selectedColor = 'butter', toastTimer;
 const today = () => new Date().toLocaleDateString('sv-SE');
 function toast(message) { $('#toast').textContent = message; $('#toast').classList.add('visible'); clearTimeout(toastTimer); toastTimer = setTimeout(()=>$('#toast').classList.remove('visible'),3200); }
-function setCloudStatus(message,status='idle') {$('#cloud-status').textContent=message;$('.cloud-strip').dataset.state=status;$('#save-status').textContent=message;$('#account-sync-info').textContent=message;}
+function setCloudStatus(message,status='idle') {$('#cloud-status').textContent=message;$('.cloud-strip').dataset.state=status;$('#account-sync-info').textContent=message;}
 function updateBusyUI() {
  const busy=cloudBusy||uploadBusy;document.body.classList.toggle('cloud-saving',busy);
  $$('[data-action="new-note"],[data-action="upload"],.note-edit,.note-grip,#note-form [type="submit"],#delete-note,#favorite-photo,#remove-photo,#account-signout,#account-refresh,#cloud-refresh,#legacy-import,#confirm-import,#config-form [type="submit"]').forEach(button=>button.disabled=busy);
 }
 function renderAccount() {
- const signedIn=!!cloud.user;$('#account-label').textContent=signedIn?'我的云端':'登录同步';$('#account-button').setAttribute('aria-label',signedIn?'管理我的云端账号':'登录云端同步');$('#account-signed-in').hidden=!signedIn;$('#account-signed-out').hidden=signedIn;$('#cloud-connect').hidden=signedIn;$('#cloud-refresh').hidden=!signedIn;$('#account-email').textContent=cloud.user?.email||'';$('#legacy-import').hidden=!signedIn||!legacyState||(legacyState.photos.length+legacyState.notes.length===0);updateBusyUI();
+ const signedIn=!!cloud.user;$('#account-label').textContent=signedIn?'我的云端':'登录同步';$('#account-button').setAttribute('aria-label',signedIn?'管理我的云端账号':'登录云端同步');$('#account-signed-in').hidden=!signedIn;$('#account-signed-out').hidden=signedIn;$('#cloud-refresh').hidden=!signedIn;$('#account-email').textContent=cloud.user?.email||'';$('#legacy-import').hidden=!signedIn||!legacyState||(legacyState.photos.length+legacyState.notes.length===0);updateBusyUI();
 }
 function requireCloud({allowUpload=false}={}) {
  if(!cloud.user){openAccount();toast('登录后即可保存照片和小纸条');return false;}
@@ -329,25 +342,27 @@ function renderPhotos() {
 }
 function setFilter(value) { filter=value;$$('[data-filter]').forEach(b=>{const active=b.dataset.filter===filter;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});renderPhotos(); }
 $$('[data-filter]').forEach(button=>button.addEventListener('click',()=>setFilter(button.dataset.filter)));
-function openDialog(dialog) { dialog.showModal(); document.body.classList.add('modal-open'); }
-$$('dialog').forEach(dialog=>{dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});dialog.addEventListener('close',()=>{if(!$$('dialog[open]').length)document.body.classList.remove('modal-open');if(dialog.id==='photo-dialog'){renderPhotos();}});});
+const dialogScrollPositions = new WeakMap();
+function openDialog(dialog) { const position={left:window.scrollX,top:window.scrollY};dialogScrollPositions.set(dialog,position);document.body.classList.add('modal-open');dialog.showModal();window.scrollTo({...position,behavior:'instant'}); }
+$$('dialog').forEach(dialog=>{dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});dialog.addEventListener('close',()=>{if(!$$('dialog[open]').length){document.body.classList.remove('modal-open');const position=dialogScrollPositions.get(dialog);if(position)window.scrollTo({...position,behavior:'instant'});}});});
 $$('[data-close]').forEach(button=>button.addEventListener('click',()=>button.closest('dialog').close()));
+$('#photo-rivers').addEventListener('mousedown',event=>{if(event.button===0&&event.target.closest('[data-photo]'))event.preventDefault();});
 function showPhoto(id) { activePhotoId=id;const photo=state.photos.find(p=>p.id===id);if(!photo)return;$('#lightbox-image').src=photo.src;$('#lightbox-image').alt=photo.caption;$('#lightbox-caption').textContent=photo.caption;$('#lightbox-category').textContent=photo.category==='travel'?'ON THE ROAD / 在路上':'DAILY LIFE / 日常切片';$('#lightbox-date').textContent=`${photo.date||''}${photo.sample?' · 示例照片':''}`;const favorite=state.favorites.includes(id);$('#favorite-photo').setAttribute('aria-pressed',String(favorite));$('#favorite-photo').setAttribute('aria-label',favorite?'取消喜欢':'喜欢照片');const alone=visiblePhotos().length<=1;$('#previous-photo').hidden=alone;$('#next-photo').hidden=alone;if(!$('#photo-dialog').open)openDialog($('#photo-dialog')); }
 function stepPhoto(direction) {const photos=visiblePhotos();if(!photos.length)return;const index=photos.findIndex(p=>p.id===activePhotoId);showPhoto(photos[(index+direction+photos.length)%photos.length].id);}
 $('#previous-photo').addEventListener('click',()=>stepPhoto(-1));$('#next-photo').addEventListener('click',()=>stepPhoto(1));
 $('#photo-dialog').addEventListener('keydown',e=>{if(e.key==='ArrowLeft'){e.preventDefault();stepPhoto(-1);}if(e.key==='ArrowRight'){e.preventDefault();stepPhoto(1);}});
-$('#favorite-photo').addEventListener('click',async()=>{const id=activePhotoId;if(await commit(()=>{state.favorites=state.favorites.includes(id)?state.favorites.filter(item=>item!==id):[...state.favorites,id];})){if(filter==='favorite'&&!state.favorites.includes(id)){const next=visiblePhotos()[0];if(next)showPhoto(next.id);else $('#photo-dialog').close();}else showPhoto(id);}});
-$('#remove-photo').addEventListener('click',async()=>{const id=activePhotoId,path=state.photos.find(p=>p.id===id)?.storagePath;if(await commit(()=>{state.photos=state.photos.filter(p=>p.id!==id);state.favorites=state.favorites.filter(item=>item!==id);})){const next=visiblePhotos()[0];if(next)showPhoto(next.id);else $('#photo-dialog').close();toast('已从云端相册移除');if(path){try{await cloud.removeFiles([path]);}catch{toast('相册记录已移除，照片文件清理失败，可稍后在存储桶清理');}}}});
+$('#favorite-photo').addEventListener('click',async()=>{const id=activePhotoId;if(await commit(()=>{state.favorites=state.favorites.includes(id)?state.favorites.filter(item=>item!==id):[...state.favorites,id];})){renderPhotos();if(filter==='favorite'&&!state.favorites.includes(id)){const next=visiblePhotos()[0];if(next)showPhoto(next.id);else $('#photo-dialog').close();}else showPhoto(id);}});
+$('#remove-photo').addEventListener('click',async()=>{const id=activePhotoId,path=state.photos.find(p=>p.id===id)?.storagePath;if(await commit(()=>{state.photos=state.photos.filter(p=>p.id!==id);state.favorites=state.favorites.filter(item=>item!==id);})){renderPhotos();const next=visiblePhotos()[0];if(next)showPhoto(next.id);else $('#photo-dialog').close();toast('已从云端相册移除');if(path){try{await cloud.removeFiles([path]);}catch{toast('相册记录已移除，照片文件清理失败，可稍后在存储桶清理');}}}});
 function boardDimensions() { const board=$('#note-board');return {board,width:board.clientWidth,height:board.clientHeight}; }
 function placeNote(element,note) {const {width,height}=boardDimensions();element.style.left=`${Math.max(8,Math.min(width-element.offsetWidth-8,note.x*(width-element.offsetWidth)))}px`;element.style.top=`${Math.max(8,Math.min(height-element.offsetHeight-8,note.y*(height-element.offsetHeight)))}px`;}
 function renderNotes() {
- const {board,width}=boardDimensions();board.replaceChildren(); const isMobile=width<600; const columns=isMobile?2:width<1050?3:4;const noteRows=Math.ceil((state.notes.length+1)/columns);board.style.height=`${Math.max(isMobile?440:columns===3?440:250,noteRows*196+45)}px`;
+ const {board,width}=boardDimensions();board.replaceChildren(); const isMobile=width<600; const columns=isMobile?2:width<1050?3:4;const noteRows=Math.ceil(state.notes.length/columns);board.style.height=`${Math.max(isMobile?570:columns===3?555:340,noteRows*252+45)}px`;
  state.notes.forEach((note,index)=>{const element=document.createElement('article');element.className='sticky-note';element.dataset.note=note.id;element.style.setProperty('--note-color',(colors.find(c=>c.id===note.color)||colors[0]).value);element.style.setProperty('--note-tilt',`${[-2,1.7,-1.4,2.2][index%4]}deg`);element.innerHTML=`<button class="note-grip" aria-label="拖动${escapeHTML(note.title)}，也可用方向键移动">${icon('grip')}</button><button class="note-edit" aria-label="编辑便利贴：${escapeHTML(note.title)}"><h3>${escapeHTML(note.title)}</h3><p>${escapeHTML(note.body)}</p></button><div class="note-meta"><span>${escapeHTML(note.date||'')}</span><span class="note-doodle" aria-hidden="true">${escapeHTML(note.doodle||'♡')}</span></div>`;board.append(element);
  // Seed notes use a readable grid on small screens; saved positions stay proportional.
- if(note.id.startsWith('note-')&&isMobile&&note.x===initialNotes[index]?.x&&note.y===initialNotes[index]?.y){element.style.left=`${index%2===0?16:width/2+6}px`;element.style.top=`${34+Math.floor(index/2)*196}px`;}else if(note.id.startsWith('note-')&&columns===3&&note.x===initialNotes[index]?.x&&note.y===initialNotes[index]?.y){element.style.left=`${18+(index%3)*(width-30)/3}px`;element.style.top='45px';}else placeNote(element,note);
+ if(note.id.startsWith('note-')&&isMobile&&note.x===initialNotes[index]?.x&&note.y===initialNotes[index]?.y){element.style.left=`${index%2===0?16:width/2+6}px`;element.style.top=`${34+Math.floor(index/2)*252}px`;}else if(note.id.startsWith('note-')&&columns===3&&note.x===initialNotes[index]?.x&&note.y===initialNotes[index]?.y){element.style.left=`${18+(index%3)*(width-30)/3}px`;element.style.top='45px';}else placeNote(element,note);
  element.querySelector('.note-edit').addEventListener('click',()=>editNote(note.id)); setupDrag(element,note);
  });
- const add=document.createElement('button');add.className='add-note-card';add.dataset.action='new-note';add.innerHTML=`${icon('plus')}<span>添加便签</span><small>ADD A NOTE</small>`;if(state.notes.length!==3){const col=state.notes.length%columns,row=Math.floor(state.notes.length/columns);add.style.left=`${16+col*width/columns}px`;add.style.top=`${34+row*196}px`;add.style.right='auto';}else if(columns===3){add.style.left='30px';add.style.top='238px';add.style.right='auto';}board.append(add);$('#note-count').textContent=`${state.notes.length} 张小纸条`;
+ $('#note-count').textContent=`${state.notes.length} 张小纸条`;
 }
 function setupDrag(element,note) {const grip=$('.note-grip',element);let drag=null;
  grip.addEventListener('pointerdown',event=>{if(event.button!==0)return;if(!requireCloud())return;event.preventDefault();const {width,height}=boardDimensions();drag={pointer:event.pointerId,x:event.clientX,y:event.clientY,left:element.offsetLeft,top:element.offsetTop,width,height};grip.setPointerCapture(event.pointerId);element.classList.add('dragging');});
@@ -368,7 +383,7 @@ let resizeTimer;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);
 if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting)$$('.nav-link').forEach(link=>link.classList.toggle('active',link.getAttribute('href')===`#${entry.target.id}`));});},{rootMargin:'-15% 0px -55% 0px'});observer.observe($('#photos'));observer.observe($('#notes'));}
 const rainRoot=$('.rain-atmosphere');
 if(rainRoot){for(let i=0;i<34;i++){const drop=document.createElement('i');drop.style.setProperty('--x',`${(i*37.3)%115}%`);drop.style.setProperty('--delay',`${-(i*.43)%9}s`);drop.style.setProperty('--duration',`${4+(i%7)*.6}s`);drop.style.setProperty('--length',`${25+(i%5)*13}px`);rainRoot.append(drop);}}
-$('#account-button').addEventListener('click',openAccount);$('#cloud-connect').addEventListener('click',openAccount);
+$('#account-button').addEventListener('click',openAccount);
 $('#cloud-refresh').addEventListener('click',()=>refreshCloud());$('#account-refresh').addEventListener('click',()=>refreshCloud());
 $('#account-signout').addEventListener('click',async()=>{if(cloudBusy||uploadBusy)return;try{await cloud.signOut();await handleSession(null);}catch(error){toast(error.message||'退出失败，请重试');}});
 $('#login-form').addEventListener('submit',async event=>{event.preventDefault();const button=$('#login-submit');if(!['http:','https:'].includes(location.protocol)){toast('邮箱登录请通过本地服务器或 GitHub Pages 打开网站');return;}button.disabled=true;try{await cloud.sendLoginLink($('#login-email').value.trim(),location.origin+location.pathname);$('#auth-message').textContent='登录邮件已发送，请查看收件箱或垃圾邮件。在这台设备的同一个浏览器打开邮件链接。';toast('登录链接已发送');}catch(error){$('#auth-message').textContent=error.message||'邮件发送失败，请检查邮箱及项目配置';}finally{button.disabled=false;}});
